@@ -5,7 +5,7 @@ import NumberButton from "../NumberButton";
 import CustomCalculator from "../StyledComponents/CustomCalculator";
 import CustomDisplay from "../StyledComponents/CustomDisplay";
 
-function Calculator() {
+const Calculator: React.FC = () => {
   // States
   const [currentValue, setCurrentValue] = useState("0");
   const [operation, setOperation] = useState("");
@@ -177,6 +177,6 @@ function Calculator() {
       </CustomCalculator>
     </Container>
   );
-}
+};
 
 export default Calculator;
