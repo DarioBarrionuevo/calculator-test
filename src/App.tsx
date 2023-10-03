@@ -22,13 +22,25 @@ function App() {
   // States
   const [currentValue, setCurrentValue] = useState("0");
   const [operation, setOperation] = useState("");
+  const [prevValue, setPrevValue] = useState("");
+  const [overwrite, setOverwrite] = useState(true);
 
   // Functions
   const pickOperation = (operation: string) => {
     setOperation(operation);
   };
   const pickNumber = (digit: string) => {
-    setCurrentValue(digit);
+    // Prevents adding more than one zero at the begining of the display number
+    if (currentValue[0] === "0" && digit === "0") return;
+    // Prevents adding more than one point
+    if (currentValue.includes(".") && digit === ".") return;
+
+    if (overwrite && digit !== ".") {
+      setCurrentValue(digit);
+    } else {
+      setCurrentValue(`${currentValue}${digit}`);
+    }
+    setOverwrite(false);
   };
 
   return (
@@ -98,7 +110,7 @@ function App() {
           {/* Fifth row */}
           <Grid item container columnSpacing={1}>
             <NumberButton xs={6} digit={"0"} enterDigit={pickNumber} />
-            <NumberButton digit={"."} enterDigit={() => {}} />
+            <NumberButton digit={"."} enterDigit={pickNumber} />
             <Grid item xs={3}>
               <Button fullWidth variant="contained">
                 =
