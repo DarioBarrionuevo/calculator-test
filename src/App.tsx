@@ -25,24 +25,37 @@ function App() {
   const [prevValue, setPrevValue] = useState("");
   const [overwrite, setOverwrite] = useState(true);
 
-  // FUNCTIONS
+  //----------------- FUNCTIONS ---------------------
+
+  // Funtion for selecting the operation
   const pickOperation = (operation: string) => {
+    setPrevValue(currentValue); //When we click in a operation the next number will override the actual display number
     setOperation(operation);
+    setOverwrite(true);
   };
   // Function for clearing the display and memory
   const clearDisplay = () => {
-    setCurrentValue("");
+    setCurrentValue("0");
     setOperation("");
     setPrevValue("");
     setOverwrite(true);
   };
+  // Function for deleting actual number in display
+  const deleteDisplay = () => {
+    setCurrentValue("0");
+    setOverwrite(true);
+  };
+  // Function for getting percentage
+  const percentage = () => {
+    const currentVal = parseFloat(currentValue);
+    setCurrentValue((currentVal / 100).toString());
+  };
 
   // Funtion for selecting and display the numbers
   const pickNumber = (digit: string) => {
-    // Prevents adding more than one zero at the begining of the display number
-    if (currentValue[0] === "0" && digit === "0") return;
-    // Prevents adding more than one point in display
-    if (currentValue.includes(".") && digit === ".") return;
+    if (currentValue[0] === "0" && digit === "0") return; // Prevents adding more than one zero at the begining of the display number
+
+    if (currentValue.includes(".") && digit === ".") return; // Prevents adding more than one point in display
 
     if (overwrite && digit !== ".") {
       setCurrentValue(digit);
@@ -69,12 +82,12 @@ function App() {
             />
             <SignButton
               operation={"C"}
-              pickOperation={pickOperation}
+              pickOperation={deleteDisplay}
               selectedOperation={operation}
             />
             <SignButton
               operation={"%"}
-              pickOperation={pickOperation}
+              pickOperation={percentage}
               selectedOperation={operation}
             />
             <SignButton
