@@ -139,7 +139,7 @@ function App() {
             <NumberButton digit={"8"} enterDigit={pickNumber} />
             <NumberButton digit={"9"} enterDigit={pickNumber} />
             <SignButton
-              operation={"x"}
+              operation={"*"}
               pickOperation={pickOperation}
               selectedOperation={operation}
             />
@@ -171,7 +171,7 @@ function App() {
             <NumberButton xs={6} digit={"0"} enterDigit={pickNumber} />
             <NumberButton digit={"."} enterDigit={pickNumber} />
             <Grid item xs={3}>
-              <Button fullWidth variant="contained">
+              <Button fullWidth variant="contained" onClick={equals}>
                 =
               </Button>
             </Grid>
