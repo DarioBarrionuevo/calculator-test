@@ -66,7 +66,14 @@ function App() {
 
   // Funtion for selecting the operation
   const pickOperation = (operation: string) => {
-    setPrevValue(currentValue); //When we click in a operation the next number will override the actual display number
+    if (prevValue) {
+      // In second or more operation, current and previous become the result of the calculation
+      const value = calculate();
+      setCurrentValue(`${value}`);
+      setPrevValue(`${value}`);
+    } else {
+      setPrevValue(currentValue); // In first operation current become previous
+    }
     setOperation(operation);
     setOverwrite(true);
   };
