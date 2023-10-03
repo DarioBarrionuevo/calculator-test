@@ -25,7 +25,44 @@ function App() {
   const [prevValue, setPrevValue] = useState("");
   const [overwrite, setOverwrite] = useState(true);
 
-  //----------------- FUNCTIONS ---------------------
+  //------------------------------------ FUNCTIONS ------------------------------------
+
+  // Function for calculating the operations
+  const calculate = () => {
+    if (!prevValue || !operation) {
+      // If there is no previous number stored or no operation selected, do nothing
+      return currentValue;
+    }
+
+    const current = parseFloat(currentValue);
+    const previous = parseFloat(prevValue);
+
+    let result;
+    switch (operation) {
+      case "÷":
+        result = previous / current;
+        break;
+      case "*":
+        result = previous * current;
+        break;
+      case "-":
+        result = previous - current;
+        break;
+      case "+":
+        result = previous + current;
+        break;
+    }
+    return result;
+  };
+
+  // Function for the equal button
+  const equals = () => {
+    const value = calculate();
+    setCurrentValue(`${value}`);
+    setPrevValue("");
+    setOperation("");
+    setOverwrite(true);
+  };
 
   // Funtion for selecting the operation
   const pickOperation = (operation: string) => {
