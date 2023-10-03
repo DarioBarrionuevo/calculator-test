@@ -1,22 +1,9 @@
-import { Container, Grid, Paper, styled, Button } from "@mui/material";
+import { Container, Grid, Button } from "@mui/material";
 import { useState } from "react";
 import SignButton from "./Components/SignButton";
 import NumberButton from "./Components/NumberButton";
-
-// Styled components
-const Calculator = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  marginTop: theme.spacing(10),
-  borderRadius: 10,
-}));
-const Display = styled(`div`)(({ theme }) => ({
-  width: "100%",
-  textAlign: "right",
-  height: "2em",
-  padding: theme.spacing(2),
-  fontSize: "5em",
-  overflow: "hidden",
-}));
+import CustomCalculator from "./Components/StyledComponents/CustomCalculator";
+import CustomDisplay from "./Components/StyledComponents/CustomDisplay";
 
 function App() {
   // States
@@ -77,6 +64,7 @@ function App() {
     setOperation(operation);
     setOverwrite(true);
   };
+
   // Function for clearing the display and memory
   const clearDisplay = () => {
     setCurrentValue("0");
@@ -84,11 +72,13 @@ function App() {
     setPrevValue("");
     setOverwrite(true);
   };
+
   // Function for deleting actual number in display
   const deleteDisplay = () => {
     setCurrentValue("0");
     setOverwrite(true);
   };
+
   // Function for getting percentage
   const percentage = () => {
     const currentVal = parseFloat(currentValue);
@@ -111,11 +101,11 @@ function App() {
 
   return (
     <Container>
-      <Calculator elevation={6}>
+      <CustomCalculator>
         <Grid container spacing={1}>
           {/* Display */}
           <Grid item xs={12}>
-            <Display>{currentValue}</Display>
+            <CustomDisplay>{currentValue}</CustomDisplay>
           </Grid>
           {/* First row */}
           <Grid item container columnSpacing={1}>
@@ -184,7 +174,7 @@ function App() {
             </Grid>
           </Grid>
         </Grid>
-      </Calculator>
+      </CustomCalculator>
     </Container>
   );
 }
