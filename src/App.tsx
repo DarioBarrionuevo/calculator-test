@@ -25,14 +25,23 @@ function App() {
   const [prevValue, setPrevValue] = useState("");
   const [overwrite, setOverwrite] = useState(true);
 
-  // Functions
+  // FUNCTIONS
   const pickOperation = (operation: string) => {
     setOperation(operation);
   };
+  // Function for clearing the display and memory
+  const clearDisplay = () => {
+    setCurrentValue("");
+    setOperation("");
+    setPrevValue("");
+    setOverwrite(true);
+  };
+
+  // Funtion for selecting and display the numbers
   const pickNumber = (digit: string) => {
     // Prevents adding more than one zero at the begining of the display number
     if (currentValue[0] === "0" && digit === "0") return;
-    // Prevents adding more than one point
+    // Prevents adding more than one point in display
     if (currentValue.includes(".") && digit === ".") return;
 
     if (overwrite && digit !== ".") {
@@ -55,7 +64,7 @@ function App() {
           <Grid item container columnSpacing={1}>
             <SignButton
               operation={"AC"}
-              pickOperation={pickOperation}
+              pickOperation={clearDisplay}
               selectedOperation={operation}
             />
             <SignButton
