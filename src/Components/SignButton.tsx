@@ -18,7 +18,7 @@ const SignButton: React.FC<SignButtonProps> = ({
   selectedOperation,
 }) => {
   return (
-    <Grid item>
+    <Grid item xs={3}>
       <StyledButton
         fullWidth
         variant="outlined"

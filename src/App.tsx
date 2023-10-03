@@ -1,5 +1,6 @@
 import { Container, Grid, Paper, styled } from "@mui/material";
 import { useState } from "react";
+import SignButton from "./Components/SignButton";
 
 // Styled components
 const Calculator = styled(Paper)(({ theme }) => ({
@@ -35,6 +36,28 @@ function App() {
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Display>{currentValue}</Display>
+          </Grid>
+          <Grid item container columnSpacing={5}>
+            <SignButton
+              operation={"AC"}
+              pickOperation={pickOperation}
+              selectedOperation={operation}
+            />
+            <SignButton
+              operation={"C"}
+              pickOperation={pickOperation}
+              selectedOperation={operation}
+            />
+            <SignButton
+              operation={"%"}
+              pickOperation={pickOperation}
+              selectedOperation={operation}
+            />
+            <SignButton
+              operation={"÷"}
+              pickOperation={pickOperation}
+              selectedOperation={operation}
+            />
           </Grid>
         </Grid>
       </Calculator>

@@ -16,7 +16,7 @@ const theme = createTheme({
   },
   typography: {
     button: {
-      fontSize: "1.5rem",
+      fontSize: "2rem",
     },
   },
 });
