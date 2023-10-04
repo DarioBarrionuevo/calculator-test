@@ -81,7 +81,7 @@ describe("calculator tests", () => {
     expect(output).toHaveTextContent("9");
   });
   // Test for percentage
-  test.only("Percentage test", () => {
+  test("Percentage test", () => {
     render(<Calculator />);
 
     fireEvent.click(screen.getByRole("button", { name: "5" }));
@@ -109,8 +109,7 @@ describe("calculator tests", () => {
     expect(output).toHaveTextContent("0");
   });
   // Test for clearing all
-
-  test("Does AC correctly", () => {
+  test("Clear all test", () => {
     render(<Calculator />);
 
     fireEvent.click(screen.getByRole("button", { name: "8" }));
@@ -123,5 +122,31 @@ describe("calculator tests", () => {
 
     const output = screen.getByTestId("output");
     expect(output).toHaveTextContent("0");
+  });
+  // Test for various operations in a row
+  test("Various operations", () => {
+    render(<Calculator />);
+
+    fireEvent.click(screen.getByRole("button", { name: "3" }));
+    fireEvent.click(screen.getByRole("button", { name: "+" }));
+    fireEvent.click(screen.getByRole("button", { name: "5" }));
+    fireEvent.click(screen.getByRole("button", { name: "2" }));
+
+    const output = screen.getByTestId("output");
+
+    fireEvent.click(screen.getByRole("button", { name: "*" }));
+    expect(output).toHaveTextContent("55");
+
+    fireEvent.click(screen.getByRole("button", { name: "4" }));
+
+    fireEvent.click(screen.getByRole("button", { name: "-" }));
+    expect(output).toHaveTextContent("220");
+
+    fireEvent.click(screen.getByRole("button", { name: "1" }));
+    fireEvent.click(screen.getByRole("button", { name: "2" }));
+    fireEvent.click(screen.getByRole("button", { name: "0" }));
+    fireEvent.click(screen.getByRole("button", { name: "=" }));
+
+    expect(output).toHaveTextContent("100");
   });
 });
