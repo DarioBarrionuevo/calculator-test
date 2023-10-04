@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Calculator from "./Calculator";
 import "@testing-library/jest-dom";
 
@@ -24,5 +24,31 @@ describe("calculator tests", () => {
     expect(screen.getByRole("button", { name: "-" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "." })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "=" })).toBeInTheDocument();
+  });
+  test("Addition test", () => {
+    render(<Calculator />);
+
+    fireEvent.click(screen.getByRole("button", { name: "3" }));
+    fireEvent.click(screen.getByRole("button", { name: "3" }));
+    fireEvent.click(screen.getByRole("button", { name: "+" }));
+    fireEvent.click(screen.getByRole("button", { name: "2" }));
+    fireEvent.click(screen.getByRole("button", { name: "0" }));
+    fireEvent.click(screen.getByRole("button", { name: "=" }));
+
+    const output = screen.getByTestId("output");
+    expect(output).toHaveTextContent("53");
+  });
+  test.only("Substraction test", () => {
+    render(<Calculator />);
+
+    fireEvent.click(screen.getByRole("button", { name: "7" }));
+    fireEvent.click(screen.getByRole("button", { name: "1" }));
+    fireEvent.click(screen.getByRole("button", { name: "-" }));
+    fireEvent.click(screen.getByRole("button", { name: "5" }));
+    fireEvent.click(screen.getByRole("button", { name: "8" }));
+    fireEvent.click(screen.getByRole("button", { name: "=" }));
+
+    const output = screen.getByTestId("output");
+    expect(output).toHaveTextContent("13");
   });
 });
