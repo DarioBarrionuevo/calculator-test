@@ -13,7 +13,7 @@ const Display = styled(`div`)(({ theme }) => ({
 }));
 
 const CustomDisplay: React.FC<Props> = ({ children }) => {
-  return <Display>{children}</Display>;
+  return <Display  data-testid="output">{children}</Display>;
 };
 
 export default CustomDisplay;
