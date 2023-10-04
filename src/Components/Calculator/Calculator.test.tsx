@@ -38,7 +38,7 @@ describe("calculator tests", () => {
     const output = screen.getByTestId("output");
     expect(output).toHaveTextContent("53");
   });
-  test.only("Substraction test", () => {
+  test("Substraction test", () => {
     render(<Calculator />);
 
     fireEvent.click(screen.getByRole("button", { name: "7" }));
@@ -50,5 +50,31 @@ describe("calculator tests", () => {
 
     const output = screen.getByTestId("output");
     expect(output).toHaveTextContent("13");
+  });
+  test("Multiplication test", () => {
+    render(<Calculator />);
+
+    fireEvent.click(screen.getByRole("button", { name: "4" }));
+    fireEvent.click(screen.getByRole("button", { name: "5" }));
+    fireEvent.click(screen.getByRole("button", { name: "*" }));
+    fireEvent.click(screen.getByRole("button", { name: "1" }));
+    fireEvent.click(screen.getByRole("button", { name: "2" }));
+    fireEvent.click(screen.getByRole("button", { name: "=" }));
+
+    const output = screen.getByTestId("output");
+    expect(output).toHaveTextContent("540");
+  });
+
+  test("Division test", () => {
+    render(<Calculator />);
+
+    fireEvent.click(screen.getByRole("button", { name: "7" }));
+    fireEvent.click(screen.getByRole("button", { name: "2" }));
+    fireEvent.click(screen.getByRole("button", { name: "÷" }));
+    fireEvent.click(screen.getByRole("button", { name: "8" }));
+    fireEvent.click(screen.getByRole("button", { name: "=" }));
+
+    const output = screen.getByTestId("output");
+    expect(output).toHaveTextContent("9");
   });
 });
