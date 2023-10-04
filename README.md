@@ -11,3 +11,8 @@
 
 # TESTING
  Unit tests performed for correct operation of the calculator with jest
+
+# DEPLOY
+You can check this project running in:
+https://calculator-g9bh.onrender.com/
+
